@@ -1,0 +1,717 @@
+/* ============================================== */
+/* GLOBAL & THEME VARIABLES             */
+/* ============================================== */
+
+:root {
+    /* Define primary colors for the dark theme */
+    --color-background-dark: #0d0d12;
+    --color-card-dark: #1a1a20;
+    --color-text-primary: #f0f0f5;
+    --color-text-secondary: #aaaaaa;
+    /* Accent colors based on your preferred button gradient */
+    --color-accent-blue: #6a11cb; 
+    --color-accent-pink: #2575fc; 
+    --color-border-dark: #333344;
+    --accent-gradient: linear-gradient(90deg, var(--color-accent-blue) 0%, var(--color-accent-pink) 100%);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+}
+
+/* Base styles for all sections */
+section {
+    padding: 80px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- THEME HELPER CLASSES --- */
+
+/* Base style for pre-titles (e.g., "Hello," "Who I Am") */
+.text-pretitle {
+    color: var(--color-accent-blue);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Gradient Title Styling (used in Intro) */
+.text-gradient-title {
+    color: var(--color-text-primary); 
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-weight: 800;
+}
+
+/* Highlighted span within titles (used for keywords) */
+.text-highlight {
+    color: var(--color-accent-pink);
+    border-bottom: 2px solid var(--color-accent-pink);
+    padding-bottom: 2px;
+}
+
+/* Gradient Button Style (used outside of the project cards) */
+.btn--gradient {
+    background: var(--accent-gradient);
+    border: none;
+    color: var(--color-text-primary);
+    padding: 12px 30px;
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.btn--gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4); 
+}
+
+.btn--link {
+    color: var(--color-text-secondary);
+    padding: 12px 30px;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 6px;
+    margin-left: 20px;
+    transition: color 0.3s, border-color 0.3s;
+    font-weight: 600;
+}
+
+.btn--link:hover {
+    color: var(--color-accent-pink);
+    border-color: var(--color-accent-pink);
+}
+
+/* ============================================== */
+/* HEADER & NAV                   */
+/* ============================================== */
+
+.header {
+    background-color: var(--color-background-dark);
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border-dark);
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent-pink);
+}
+
+.header__nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.header__nav a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+.header__nav a:hover, .header__nav a.active {
+    color: var(--color-text-primary);
+}
+
+.header__nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent-blue);
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s;
+}
+
+.header__nav a:hover::after {
+    width: 100%;
+}
+
+.header__menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ============================================== */
+/* INTRO SECTION                  */
+/* ============================================== */
+
+.s-intro {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.s-intro__content {
+    max-width: 900px;
+}
+
+.s-intro__title {
+    font-size: 4rem;
+    margin: 10px 0 20px 0;
+    line-height: 1.1;
+}
+
+.s-intro__text {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 40px;
+}
+
+.s-intro__action {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Scroll down arrow color in dark theme */
+.intro-scrolldown {
+    position: absolute;
+    bottom: 30px;
+    padding: 10px;
+    animation: bounce 2s infinite;
+    opacity: 0.7;
+}
+
+.intro-scrolldown svg {
+    width: 30px;
+    height: 30px;
+}
+
+.intro-scrolldown svg path {
+    fill: none; /* Use stroke for color */
+    stroke: var(--color-text-secondary);
+    transition: stroke 0.3s;
+}
+
+.intro-scrolldown:hover svg path {
+    stroke: var(--color-accent-pink);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ============================================== */
+/* ABOUT SECTION                  */
+/* ============================================== */
+
+.s-about__inner {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.s-about__text-content {
+    flex: 2;
+}
+
+.s-about__heading {
+    font-size: 2.2rem;
+    margin: 10px 0 20px 0;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+}
+
+.s-about__text-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+}
+
+.about-pic-modern {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-pic-modern img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--color-border-dark);
+    object-fit: cover;
+}
+
+.s-about__action {
+    margin-top: 30px;
+}
+
+
+/* Skills Tag Styling */
+.skills-tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.skill-tag {
+    background-color: var(--color-card-dark);
+    color: var(--color-text-primary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.skill-tag:hover {
+    background-color: #2a2a30;
+    border-color: var(--color-accent-blue);
+}
+
+/* Modern Timeline Card Style */
+.s-about__timeline {
+    padding-top: 40px;
+}
+
+.timeline {
+    margin-top: 30px;
+}
+
+.new-timeline-style {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 30px auto 0 auto;
+}
+
+.new-timeline-style .timeline__block {
+    background-color: var(--color-card-dark);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid transparent;
+    transition: border 0.3s, background-color 0.3s;
+    position: relative; /* Needed for alignment/hover */
+}
+
+.new-timeline-style .timeline__block:hover {
+    border: 1px solid var(--color-accent-blue);
+    background-color: #202025;
+}
+
+.new-timeline-style .timeline__title {
+    color: var(--color-text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+.new-timeline-style .timeline__meta {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+.new-timeline-style .timeline__timeframe {
+    color: var(--color-accent-pink);
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 0.85rem;
+}
+.new-timeline-style .timeline__desc p {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Remove default vertical line/bullet for card style */
+.new-timeline-style .timeline__bullet {
+    display: none; 
+}
+
+
+/* ============================================== */
+/* WORKS SECTION (Cards)          */
+/* ============================================== */
+
+.s-works {
+    background-color: var(--color-background-dark); 
+    padding: 60px 5%;
+    text-align: center;
+}
+
+/* Works Section Heading Size */
+.s-works .text-pretitle {
+    font-size: 1.2rem; 
+    margin-bottom: 10px;
+    text-align: center; 
+}
+
+.s-works .h1 { 
+    font-size: 2.5rem; /* Significantly increased size for the main heading */
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 800px;
+    margin: 0 auto 50px auto; 
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+
+/* --- 1. Gallery Layout (Grid) --- */
+.nft-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px;
+    padding: 20px 0;
+    margin: 0 auto;
+    max-width: 1300px; 
+    justify-items: center; 
+}
+
+/* --- 2. Base Card Styling (Uniform) --- */
+.nft-card {
+    background: var(--color-card-dark); 
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+    overflow: hidden;
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px; /* Standard card size */
+    position: relative;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-dark); 
+}
+
+.nft-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.nft-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(37, 117, 252, 0.3); 
+    border-color: var(--color-accent-blue); /* Highlight border on hover */
+}
+
+/* --- 3. Card Content --- */
+.nft-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; 
+    margin: 15px 15px 0 15px; 
+    background-color: #2b2b35; 
+    padding-bottom: 56.25%; /* 16:9 aspect ratio placeholder */
+    height: 0;
+}
+
+.nft-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.nft-card:hover .nft-image img {
+    transform: scale(1.05);
+}
+
+.nft-details {
+    padding: 15px;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.nft-title {
+    font-size: 1.2rem; 
+    font-weight: 700;
+    margin-bottom: 15px; 
+    text-align: center; 
+    color: var(--color-text-primary);
+}
+
+/* --- REMOVED: nft-creator and nft-views --- */
+.nft-creator, .nft-views {
+    display: none; 
+}
+
+/* Layout for the views/link button row */
+.nft-info-row {
+    display: flex;
+    justify-content: center; /* Center the button */
+    align-items: center;
+    margin-top: auto; /* Push this row to the bottom */
+}
+
+/* --- 4. Gradient Button Styling (Adjusted for Fit) --- */
+.nft-button {
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 8px 20px; /* Adjusted padding for better fit */
+    font-size: 0.9rem; 
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+}
+
+.nft-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px); 
+}
+
+/* Ensure no specific card scaling/shifting is applied */
+.nft-card.main-card {
+    background: var(--color-card-dark); 
+    padding: 0; 
+    transform: none; 
+    margin-top: 0; 
+    border: 1px solid var(--color-border-dark); 
+}
+
+.nft-card.main-card::before {
+    display: none; 
+}
+
+
+/* ============================================== */
+/* CONTACT SECTION                 */
+/* ============================================== */
+
+.s-contact {
+    text-align: center;
+}
+
+.s-contact__heading {
+    font-size: 2 rem;
+    margin: 10px auto 20px auto;
+    line-height: 1.3;
+    max-width: 1200px;
+    color: var(--color-text-primary);
+}
+
+.s-contact p {
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+/* Modern Contact Grid Layout */
+.contact-grid-modern {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+/* Contact Info Card Styling */
+.contact-card-modern {
+    background-color: var(--color-card-dark);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border-dark);
+    flex: 1; 
+    min-width: 250px;
+    max-width: 350px;
+    text-align: center;
+}
+
+.contact-card-modern .text-pretitle {
+    color: var(--color-accent-blue);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.contact-links a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.contact-links a:hover {
+    color: var(--color-accent-pink);
+}
+
+.contact-social a {
+    color: var(--color-text-secondary);
+    transition: color 0.3s;
+}
+
+.contact-social a:hover {
+    color: var(--color-accent-blue);
+}
+
+/* Center contact social card content */
+.contact-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Keep text aligned left */
+}
+
+.contact-social {
+    display: flex;
+    gap: 20px;
+    font-size: 1.8rem;
+}
+
+
+/* ============================================== */
+/* FOOTER                      */
+/* ============================================== */
+
+.footer {
+    padding: 30px 5%;
+    text-align: center;
+    border-top: 1px solid var(--color-border-dark);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ============================================== */
+/* MEDIA QUERIES                  */
+/* ============================================== */
+
+@media (max-width: 1024px) {
+    .s-about__inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .s-about__text-content, .about-pic-modern {
+        max-width: 600px;
+    }
+    .about-pic-modern img {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__nav {
+        display: none;
+    }
+    .header__menu-toggle {
+        display: block;
+    }
+
+    .s-intro {
+        min-height: 80vh;
+    }
+    .s-intro__title {
+        font-size: 3rem;
+    }
+    .s-intro__text {
+        font-size: 1.1rem;
+    }
+    .s-intro__action {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn--link {
+        margin-left: 0;
+    }
+
+    .s-about__heading, .s-contact__heading {
+        font-size: 1.8rem;
+    }
+
+    .s-works .h1 {
+        font-size: 1.8rem; 
+    }
+
+    .nft-gallery {
+        grid-template-columns: 1fr;
+        padding: 20px 0;
+    }
+
+    .nft-card {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .contact-grid-modern {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .contact-card-modern {
+        max-width: 100%;
+    }
+}
+
+.contact-links a {
+    /* Set a smaller font size, e.g., 0.9rem (about 14.4px) */
+    font-size: 0.9rem; 
+    
+    /* Inherit or define other styles as needed */
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
