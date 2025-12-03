@@ -715,3 +715,14 @@ section {
     text-decoration: none;
     transition: color 0.3s;
 }
+.contact-card-modern {
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.contact-card-modern p.text-pretitle {
+    letter-spacing: 2px;
+}
+.contact-links {
+    overflow-wrap: anywhere;
+}
