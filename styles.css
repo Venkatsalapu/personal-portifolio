@@ -708,7 +708,7 @@ section {
 
 .contact-links a {
     /* Set a smaller font size, e.g., 0.9rem (about 14.4px) */
-    font-size: 0.9rem; 
+    font-size: 1rem; 
     
     /* Inherit or define other styles as needed */
     color: var(--color-text-primary);
